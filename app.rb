@@ -9,11 +9,19 @@ get "/hi" do
   "hi with your name"
 end
 
-post "/hi" do
+post '/hi' do
+  content_type :text
   j = JSON.parse(request.body.string)
-  j["events"].map{ |e|
-    if e["message"]
-      "Hi, #{e["message"]["nickname"]}!"
+  j["events"].select{|e|e['message']}.map{|e|
+    text = e["message"]["text"]
+    if text == hi
+      result = "Hi,#{e["message"]["nickname"]}!"
+      if result .empty?
+        return "Not Found."
+      else
+        return result
+      end
     end
-  }.compact.join("\n")+"\n"
+  }
+  return ""
 end
