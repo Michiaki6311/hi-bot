@@ -15,6 +15,8 @@ post '/hi' do
   j['events'].select{|e| e['message']}.map{|e|
     if e['message']['text'] == "hi" then
       "Hi, #{e["message"]["nickname"]}!"
+      else
+      ""
     end
   }
 end
