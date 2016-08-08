@@ -5,23 +5,16 @@ get '/' do
   "Hello,World!"
 end
 
-get "/hi" do
-  "hi with your name"
+get '/hi' do
+  "Hi"
 end
 
 post '/hi' do
-  content_type :text
   j = JSON.parse(request.body.string)
-  j["events"].select{|e|e['message']}.map{|e|
-    text = e["message"]["text"]
-    if text == hi
-      result = "Hi,#{e["message"]["nickname"]}!"
-      if result .empty?
-        return "Not Found."
-      else
-        return result
-      end
+  j['events'].select{|e| e['message']}.map{|e|
+    if e['message']['text'] == "hi" then
+      response = "Hi, #{e["message"]["nickname"]}!"
     end
   }
-  return ""
+    response.strip
 end
