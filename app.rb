@@ -10,10 +10,13 @@ get '/hi' do
 end
 
 post '/hi' do
+  content_type :text
+  response = ""
+
   j = JSON.parse(request.body.string)
   j['events'].select{|e| e['message']}.map{|e|
     if e['message']['text'] == "hi" then
-      response = "Hi, #{e["message"]["nickname"]}!"
+      "Hi"
     end
   }
     response.strip
