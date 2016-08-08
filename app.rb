@@ -17,5 +17,4 @@ post '/hi' do
       "Hi, #{e["message"]["nickname"]}!"
     end
   }
-    response.strip
 end
