@@ -2,11 +2,11 @@ require 'sinatra'
 require 'json'
 
 get '/' do
-  "Hello,World!"
+  'Hello,World!'
 end
 
 get '/hi' do
-  "Hi"
+  'Hi'
 end
 
 post '/hi' do
